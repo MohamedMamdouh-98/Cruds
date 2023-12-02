@@ -1,0 +1,37 @@
+body{
+    text-transform: capitalize;
+}
+/* dark mode */
+.dark-mode {
+    --text-color: #ECF0F1;
+    --bg-color: #17202A;
+}
+
+/* light mode */
+.light-mode {
+    --text-color: #121213;
+    --bg-color: #1d5fac;
+}
+
+.test{
+    color: var(--text-color);
+    background-color: var(--bg-color);
+    width: 200px;
+    height: 50px;
+    text-align: center;
+}
+.price input{
+    width: 200px;
+}
+#total{
+    background: #ff5454;
+    padding: 0 10px;
+    height: 38px;
+    min-width: 90px;
+    display: flex;
+    align-items: center;
+    border-radius: 6px;
+}
+#total::before{
+    content: "Total:";
+}
