@@ -29,6 +29,7 @@ localStorage.product != null
   : (dataProduct = []);
 
 submit.addEventListener("click", () => {
+  //create object to store data product
   let newProduct = {
     title: title.value,
     price: price.value,
@@ -39,6 +40,22 @@ submit.addEventListener("click", () => {
     count: count.value,
     category: category.value,
   };
+  // save the data in dataProduct[]
   dataProduct.push(newProduct);
+  //save the data in localStorage
   localStorage.setItem("product", JSON.stringify(dataProduct));
+  //clear data from inputs
+  clearData();
 });
+
+//clear data
+clearData = () => {
+  title.value = "";
+  price.value = "";
+  taxes.value = "";
+  ads.value = "";
+  discount.value = "";
+  count.value = "";
+  category.value = "";
+  total.innerHTML = "";
+};
