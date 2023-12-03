@@ -1,6 +1,7 @@
 body{
     text-transform: capitalize;
-    background: #000000d5!important
+    background: #000000d5!important;
+    color: #fff!important
 }
 /* dark mode */
 .dark-mode {

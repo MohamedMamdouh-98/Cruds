@@ -46,6 +46,8 @@ submit.addEventListener("click", () => {
   localStorage.setItem("product", JSON.stringify(dataProduct));
   //clear data from inputs
   clearData();
+  //show data in table
+  showData();
 });
 
 //clear data
@@ -59,3 +61,29 @@ clearData = () => {
   category.value = "";
   total.innerHTML = "";
 };
+
+//read data and show in table
+showData = () => {
+  let table = "";
+  for (i = 0; i < dataProduct.length; i++) {
+    table += `
+    <tr>
+    <th scope="row">${i}</th>
+    <td>${dataProduct[i].title}</td>
+    <td>${dataProduct[i].price}</td>
+    <td>${dataProduct[i].taxes}</td>
+    <td>${dataProduct[i].ads}</td>
+    <td>${dataProduct[i].discount}</td>
+    <td>${dataProduct[i].total}</td>
+    <td>${dataProduct[i].category}</td>
+    <td><button id="update" class="btn btn-primary">update</button></td>
+    <td><button id="delete" class="btn btn-danger">delete</button></td>
+    </tr>
+  `;
+  }
+
+  document.getElementById("tbody").innerHTML = table;
+};
+
+//show data in table
+showData();
