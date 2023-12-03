@@ -9,6 +9,8 @@ count = document.getElementById("count");
 category = document.getElementById("category");
 submit = document.getElementById("submit");
 delete_all = document.getElementById("delete_all");
+ let mood = "create";
+ let item;
 // get total
 getTotal = () => {
   if (price.value != "") {
@@ -41,8 +43,24 @@ submit.addEventListener("click", () => {
     count: count.value,
     category: category.value,
   };
-  // save the data in dataProduct[]
-  dataProduct.push(newProduct);
+
+  if(mood === "create"){
+    if (newProduct.count > 1) {
+      for (i = 0; i < newProduct.count; i++) {
+        // save the data in dataProduct count
+        dataProduct.push(newProduct);
+      }
+    } else {
+      // save the data in dataProduct
+      dataProduct.push(newProduct);
+    }
+  }else{
+    dataProduct[item] = newProduct
+    mood = "create"
+    submit.innerHTML = "create"
+    count.style = "block"
+  }
+
   //save the data in localStorage
   localStorage.setItem("product", JSON.stringify(dataProduct));
   //clear data from inputs
@@ -65,6 +83,7 @@ clearData = () => {
 
 //read data and show in table
 showData = () => {
+  getTotal();
   let table = "";
   for (i = 0; i < dataProduct.length; i++) {
     table += `
@@ -77,7 +96,7 @@ showData = () => {
     <td>${dataProduct[i].discount}</td>
     <td>${dataProduct[i].total}</td>
     <td>${dataProduct[i].category}</td>
-    <td><button class="btn btn-primary">update</button></td>
+    <td><button class="btn btn-primary" onClick = "updateProduct(${i})">update</button></td>
     <td><button class="btn btn-danger" onClick = "deleteProduct(${i})">delete</button></td>
     </tr>
   `;
@@ -110,4 +129,23 @@ deleteAll = () => {
   dataProduct.splice(0);
   //update and showData
   showData();
+};
+
+//update
+updateProduct = (i) => {
+  title.value = dataProduct[i].title;
+  price.value = dataProduct[i].price;
+  ads.value = dataProduct[i].ads;
+  taxes.value = dataProduct[i].taxes;
+  discount.value = dataProduct[i].discount;
+  category.value = dataProduct[i].category;
+  submit.innerHTML = 'update'
+  getTotal()
+  count.style.display = "none"
+  mood = "update"
+  item = i
+  scroll({
+    top: 0,
+    behavior: "smooth"
+  })
 };
