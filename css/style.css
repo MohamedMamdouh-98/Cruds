@@ -1,5 +1,6 @@
 body{
     text-transform: capitalize;
+    background: #000000d5!important
 }
 /* dark mode */
 .dark-mode {
@@ -24,7 +25,6 @@ body{
     width: 200px;
 }
 #total{
-    background: #ff5454;
     padding: 0 10px;
     height: 38px;
     min-width: 90px;
