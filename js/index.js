@@ -8,6 +8,7 @@ total = document.getElementById("total");
 count = document.getElementById("count");
 category = document.getElementById("category");
 submit = document.getElementById("submit");
+delete_all = document.getElementById("delete_all");
 // get total
 getTotal = () => {
   if (price.value != "") {
@@ -68,7 +69,7 @@ showData = () => {
   for (i = 0; i < dataProduct.length; i++) {
     table += `
     <tr>
-    <th scope="row">${i}</th>
+    <th scope="row">${i + 1}</th>
     <td>${dataProduct[i].title}</td>
     <td>${dataProduct[i].price}</td>
     <td>${dataProduct[i].taxes}</td>
@@ -76,14 +77,37 @@ showData = () => {
     <td>${dataProduct[i].discount}</td>
     <td>${dataProduct[i].total}</td>
     <td>${dataProduct[i].category}</td>
-    <td><button id="update" class="btn btn-primary">update</button></td>
-    <td><button id="delete" class="btn btn-danger">delete</button></td>
+    <td><button class="btn btn-primary">update</button></td>
+    <td><button class="btn btn-danger" onClick = "deleteProduct(${i})">delete</button></td>
     </tr>
   `;
   }
 
   document.getElementById("tbody").innerHTML = table;
+  dataProduct.length > 1
+    ? (delete_all.innerHTML = `<button class="btn btn-danger my-3" onClick = "deleteAll()">delete all</button>`)
+    : (delete_all.innerHTML = "");
 };
-
 //show data in table
 showData();
+
+//delete product
+deleteProduct = (i) => {
+  console.log(i);
+  // get dataProduct subtract 1
+  dataProduct.splice(i, 1);
+  // update data in localStorage
+  localStorage.product = JSON.stringify(dataProduct);
+  //update and showData
+  showData();
+};
+
+//delete all
+deleteAll = () => {
+  // clear data from localStorage
+  localStorage.clear();
+  // clear data from dataProduct
+  dataProduct.splice(0);
+  //update and showData
+  showData();
+};
