@@ -133,6 +133,7 @@ deleteAll = () => {
 
 //update
 updateProduct = (i) => {
+  //update newProduct
   title.value = dataProduct[i].title;
   price.value = dataProduct[i].price;
   ads.value = dataProduct[i].ads;
@@ -140,9 +141,12 @@ updateProduct = (i) => {
   discount.value = dataProduct[i].discount;
   category.value = dataProduct[i].category;
   submit.innerHTML = 'update'
+  // run function getTotal
   getTotal()
   count.style.display = "none"
+  //edit mood
   mood = "update"
+  // send i => item
   item = i
   scroll({
     top: 0,
