@@ -43,6 +43,7 @@ submit.addEventListener("click", () => {
     count: count.value,
     category: category.value,
   };
+if(title.value != "" && price.value != "" && count.value != "" && category.value != "" && newProduct.count < 100 ){
 
   if (mood === "create") {
     if (newProduct.count > 1) {
@@ -54,12 +55,16 @@ submit.addEventListener("click", () => {
       // save the data in dataProduct
       dataProduct.push(newProduct);
     }
-  } else {
+  } 
+  else {
     dataProduct[item] = newProduct;
     mood = "create";
     submit.innerHTML = "create";
     count.style = "block";
   }
+ //clear data from inputs
+ clearData();
+}
 
   //save the data in localStorage
   localStorage.setItem("product", JSON.stringify(dataProduct));
