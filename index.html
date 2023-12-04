@@ -90,12 +90,13 @@
             class="form-control"
             id="search"
             placeholder="search"
+            onkeyup="searchData(this.value)"
           />
           <div class="d-flex my-3 justify-content-center gap-5">
-            <button type="button" id="search_title" class="btn btn-primary">
+            <button onclick="getSearchMood(this.id)" type="button" id="search_title" class="btn btn-primary">
               search by title
             </button>
-            <button type="button" id="search_category" class="btn btn-primary">
+            <button onclick="getSearchMood(this.id)" type="button" id="search_category" class="btn btn-primary">
               search by category
             </button>
           </div>
